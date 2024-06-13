@@ -45,11 +45,15 @@ export const LandingHero = () => {
                 No credit card required
             </div>
             <div className=" flex items-center justify-center">
-                <Image
+                {/* <Image
                 src="/construction.png"
                 alt=""
                 width={500}
                 height={500}
+                /> */}
+                <img src="/construction.png"
+                alt="img"
+                className="h-80 w-85 object-contain"
                 />
             </div>
             <div className=" flex items-center justify-center text-sm text-zinc-500 ">
