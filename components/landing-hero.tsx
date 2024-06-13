@@ -54,7 +54,7 @@ export const LandingHero = () => {
             </div>
             <div className=" flex items-center justify-center text-sm text-zinc-500 ">
                 <p>
-                    We're still building this website. Stay tuned for more updates!
+                    We are still building this website. Stay tuned for more updates!
                 </p>
             </div>
         </div>
