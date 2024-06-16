@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { usePathname } from "next/navigation";
+import { FreeCounter } from "./free-counter";
 
 const monsterrat = Montserrat({
     weight: "600",
@@ -60,7 +61,13 @@ const routes = [
 
 ];
 
-const Sidebar = () => {
+interface SidebarProps {
+    apiLimitCount: number;
+};
+
+const Sidebar = ({
+    apiLimitCount = 0
+}:SidebarProps) => {
     const pathname = usePathname();
     return (
         <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
@@ -98,6 +105,9 @@ const Sidebar = () => {
                     ))}
                 </div>
             </div>
+            <FreeCounter
+            apiLimitCount={apiLimitCount}
+            />
         </div>
     );
 }
