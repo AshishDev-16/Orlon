@@ -21,9 +21,9 @@ export const LandingHero = () => {
                         strings: [
                             "Chatbot.",
                             "Photo Generation.",
-                            "Music Generation..",
-                            "Code Generation..",
-                            "Video Generation..", 
+                            "Music Generation.",
+                            "Code Generation.",
+                            "Video Generation.", 
                         ],
                         autoStart: true,
                         loop:true
@@ -36,30 +36,13 @@ export const LandingHero = () => {
             </div>
             <div className="">
                 <Link href={isSignedIn? "/dashboard" : "/sign-up"}>
-                <Button  className="md:text-lg p-4 md:p-6 bg  bg-gradient-to-r  from-violet-700 to-pink-500 rounded-full font-semibold">
+                <Button variant="premium" className="rounded-full">
                     Start Generating for Free
                 </Button>
                 </Link>
             </div>
             <div className="text-zinc-400 text-xs md:text-sm font-normal">
                 No credit card required
-            </div>
-            <div className=" flex items-center justify-center">
-                {/* <Image
-                src="/construction.png"
-                alt=""
-                width={500}
-                height={500}
-                /> */}
-                <img src="/construction.png"
-                alt="img"
-                className="h-80 w-85 object-contain"
-                />
-            </div>
-            <div className=" flex items-center justify-center text-sm text-zinc-500 ">
-                <p>
-                    We are still building this website. Stay tuned for more updates!
-                </p>
             </div>
         </div>
      );
