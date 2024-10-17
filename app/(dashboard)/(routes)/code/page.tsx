@@ -23,6 +23,7 @@ import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 
 
@@ -32,6 +33,7 @@ type ChatCompletionRequestMessage = {
 };
 
 const CodePage = () => {
+    const proModal = useProModal();
     const router = useRouter();
     const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
@@ -44,30 +46,6 @@ const CodePage = () => {
 
      const isLoading = form.formState.isLoading;
 
-    // const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    //     try {
-    //         const userMessage: ChatCompletionRequestMessage = { 
-    //             role: "user",
-    //             content:values.prompt,
-    //         };
-    //         const newMessages = [...messages, userMessage];
-
-    //         useQuery('message', async () => {
-    //             const response = await axios.post("/api/conversation", {
-    //                 messages: newMessages
-    //             });
-    //             setMessages((current) => [...current, userMessage, response.data]);
-    //         });
-
-    //         form.reset();
-
-    //     } catch (error:any) {
-    //         //TODO: Open Pro Modal
-    //         console.log(error);
-    //     }finally {
-    //         router.refresh();
-    //     }
-    // };
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const userMessage: ChatCompletionRequestMessage = {
@@ -84,8 +62,9 @@ const CodePage = () => {
             form.reset();
 
         } catch (error: any) {
-            // TODO: open Pro Modal
-            console.error(error);
+            if(error?.response?.status  === 403) {
+                proModal.onOpen();
+            }
         }finally {
             router.refresh();
         }
@@ -167,7 +146,7 @@ const CodePage = () => {
                                         </div>
                                     ),
                                     code: ({node, ...props}) => (
-                                        <code className="bg-black/10 p-1 rounded-lg p-1" {...props} />
+                                        <code className="bg-black/10 rounded-lg p-1" {...props} />
                                     )
                                 }}
                                 className="text-sm overflow-hidden leading-7"
